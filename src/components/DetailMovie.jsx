@@ -1,5 +1,5 @@
 import React from "react";
-import {useState , useEffect} from "react"
+import { useEffect } from "react";
 import useDataMovies from "../hooks/useDataMovies";
 import { useParams } from "react-router-dom";
 import {
@@ -15,22 +15,19 @@ import {
   Flex,
 } from "@chakra-ui/react";
 
-
 export default function DetailMovie() {
+  const { oneMovie, info } = useDataMovies();
 
-  const {setInfo, oneMovie,info} = useDataMovies()
+  let { id, img } = useParams();
 
-  let params = useParams()
-
-useEffect(() =>{
- oneMovie(83)
-
-},[])
+  useEffect(() => {
+    oneMovie(id);
+  }, []);
 
   return (
     <Box
       height="600px"
-      backgroundImage= {setInfo.poster_path}
+      // backgroundImage= {setInfo.poster_path}
       filter="auto"
       brightness="80%"
     >
@@ -46,7 +43,7 @@ useEffect(() =>{
             <Image
               objectFit="cover"
               maxW={{ base: "50%", sm: "500px" }}
-              src= {info.backdrop_path}
+              src={info.backdrop_path}
               alt={info.backdrop_path}
             />
 
@@ -54,28 +51,25 @@ useEffect(() =>{
               <Box backdropFilter="auto" backdropContrast="90%">
                 <CardBody>
                   <Flex>
-                    <Heading size="md" color="white">
-                      {info.title}                
-               <Text>    {info.release_date}</Text>
+                    <Heading size="md" color="black">
+                      {info.title}
                     </Heading>
                     <Button colorScheme="teal" variant="link" ml="60px">
                       Ver trailer
                     </Button>
                   </Flex>
 
-                  <Text py="10" color="white">
+                  <Text py="10" color="black">
                     General
                   </Text>
                   <Text fontSize="md" fontWeight="5px">
-                  {info.overview}
+                    {info.overview}
                   </Text>
                 </CardBody>
 
                 <CardFooter>
-                  <Text py="10" color="white">
-  
+                  <Text py="10" color="black">
                     Generos
-             
                   </Text>
                 </CardFooter>
               </Box>
