@@ -1,6 +1,7 @@
 import React from "react";
 import {useState , useEffect} from "react"
-
+import useDataMovies from "../hooks/useDataMovies";
+import { useParams } from "react-router-dom";
 import {
   Center,
   Text,
@@ -14,11 +15,22 @@ import {
   Flex,
 } from "@chakra-ui/react";
 
+
 export default function DetailMovie() {
+
+  const {setInfo, oneMovie,info} = useDataMovies()
+
+  let params = useParams()
+
+useEffect(() =>{
+ oneMovie(83)
+
+},[])
+
   return (
     <Box
       height="600px"
-      backgroundImage="url(https://hips.hearstapps.com/hmg-prod/images/6-en-la-sombra-2-1585813193.jpg) "
+      backgroundImage= {setInfo.poster_path}
       filter="auto"
       brightness="80%"
     >
@@ -34,8 +46,8 @@ export default function DetailMovie() {
             <Image
               objectFit="cover"
               maxW={{ base: "50%", sm: "500px" }}
-              src="https://images.unsplash.com/photo-1667489022797-ab608913feeb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw5fHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=800&q=60"
-              alt="Caffe Latte"
+              src= {info.backdrop_path}
+              alt={info.backdrop_path}
             />
 
             <Box h="400px">
@@ -43,7 +55,8 @@ export default function DetailMovie() {
                 <CardBody>
                   <Flex>
                     <Heading size="md" color="white">
-                      Titulo de la pelicula
+                      {info.title}                
+               <Text>    {info.release_date}</Text>
                     </Heading>
                     <Button colorScheme="teal" variant="link" ml="60px">
                       Ver trailer
@@ -54,14 +67,15 @@ export default function DetailMovie() {
                     General
                   </Text>
                   <Text fontSize="md" fontWeight="5px">
-                    Aca va toda la descripcion de la pelicula
+                  {info.overview}
                   </Text>
                 </CardBody>
 
                 <CardFooter>
                   <Text py="10" color="white">
-                    {" "}
-                    Generos{" "}
+  
+                    Generos
+             
                   </Text>
                 </CardFooter>
               </Box>

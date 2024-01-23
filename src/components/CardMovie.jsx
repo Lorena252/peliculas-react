@@ -1,4 +1,5 @@
 import React from "react";
+import {  useNavigate, useParams} from "react-router-dom" 
 import {
   Center,
   Text,
@@ -13,11 +14,18 @@ import {
   Box,
 } from "@chakra-ui/react";
 import {ViewIcon } from '@chakra-ui/icons'
+import useDataMovies from "../hooks/useDataMovies";
+
 
 
 export default function CardMovie() {
+  
+const navigate = useNavigate()
+const {setInfo, oneMovie,info} = useDataMovies()
+
+let {title, id} = useParams()
   return (
-    <Box>
+    <Box onClick={() => navigate(`/detail/:${id}`)}>
       <Box>
         <Flex>
           <Wrap>
@@ -30,7 +38,7 @@ export default function CardMovie() {
               <Stack spacing="1" h="55px">
                 <Center>
                   <Heading as="h5" size="sm" pt="15px">
-                    titulo
+                    {info.title}
                   </Heading>
                 </Center>
               </Stack>

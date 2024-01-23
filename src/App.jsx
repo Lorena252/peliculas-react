@@ -19,10 +19,10 @@ function App() {
       <Header/>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/lanzamientos" element={<Lanzamientos/>} />
-        <Route path="/populares" element={<Populares/>} />
+        <Route path="/lanzamientos" element={<Lanzamientos fetch="now_playing"/>} />
+        <Route path="/populares" element={<Populares fetch="popular"/>} />
         <Route path="/buscar" element={<Search bg="pink"/>} />
-        <Route path="/detail" element={<DetailMovie/>} /> 
+        <Route path="/detail/:id" element={<DetailMovie fetch="id"/>} /> 
       </Routes>
       <Footer />
     </BrowserRouter>
