@@ -1,11 +1,40 @@
 import React from "react";
-import { Link } from "react-router-dom"
-import { Center,Text} from "@chakra-ui/react";
+import { Link , useParams} from "react-router-dom"
+import { Center,Text, Box} from "@chakra-ui/react";
+import {useState , useEffect} from "react"
+import CardMovie from "./CardMovie";
+
 
 export default function Populares() {
+
+const params = useParams()
+
   return (
-<Center h="100px">
-    <Text>populares</Text>
-    </Center>
+<Box>
+     <Center h="100px">
+        <Text fontSize="3xl">Populares</Text>
+      </Center>
+
+   <CardMovie/>
+</Box>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   );
 }

@@ -6,9 +6,15 @@ import Populares from "./components/Populares";
 import Search from "./components/Search";
 import Home from "./components/Home";
 import Footer from "./components/Footer";
+import DetailMovie from "./components/DetailMovie";
+
 
 function App() {
+
+  
+
   return (
+
     <BrowserRouter>
       <Header/>
       <Routes>
@@ -16,11 +22,13 @@ function App() {
         <Route path="/lanzamientos" element={<Lanzamientos/>} />
         <Route path="/populares" element={<Populares/>} />
         <Route path="/buscar" element={<Search bg="pink"/>} />
+        <Route path="/detail" element={<DetailMovie/>} /> 
       </Routes>
       <Footer />
     </BrowserRouter>
     
   );
+    
 }
 
 export default App;
