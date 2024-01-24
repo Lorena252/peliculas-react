@@ -31,6 +31,7 @@ function useDataMovies() {
     const data = await response.json();
     setInfo(data);
     console.log(data);
+    
   }
 
   return {

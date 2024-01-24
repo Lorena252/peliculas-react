@@ -13,12 +13,12 @@ export default function Lanzamientos() {
 
   return (
     <Box>
-      <Center h="100px">
+      <Center h="100px" >
         <Text fontSize="3xl">Lanzamientos</Text>
       </Center>
-
-      <Box>
-        <Flex>
+<Center>  
+      <Box ml="20px">
+     <Flex >
           <Wrap>
             {info.map((movie) => {
               return (
@@ -33,6 +33,8 @@ export default function Lanzamientos() {
           </Wrap>
         </Flex>
       </Box>
+      
+      </Center>
     </Box>
   );
 }

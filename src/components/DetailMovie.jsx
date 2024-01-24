@@ -3,11 +3,9 @@ import { useEffect } from "react";
 import useDataMovies from "../hooks/useDataMovies";
 import { useParams } from "react-router-dom";
 import {
-  Center,
   Text,
   Box,
   Card,
-  Image,
   CardBody,
   Heading,
   CardFooter,
@@ -18,65 +16,75 @@ import {
 export default function DetailMovie() {
   const { oneMovie, info } = useDataMovies();
 
-  let { id, img } = useParams();
+  let { id } = useParams();
 
   useEffect(() => {
     oneMovie(id);
   }, []);
 
   return (
-    <Box
-      height="600px"
-      // backgroundImage= {setInfo.poster_path}
-      filter="auto"
-      brightness="80%"
-    >
-      <Center>
-        <Flex>
-          <Card
-            direction={{ base: "column", sm: "row" }}
-            pb="20px"
-            w="80%"
-            backgroundColor="transparent"
-            pt="80px"
-          >
-            <Image
-              objectFit="cover"
-              maxW={{ base: "50%", sm: "500px" }}
-              src={info.backdrop_path}
-              alt={info.backdrop_path}
-            />
+    <>
+  
+        <Box
+          display="flex"
+          justifyContent="center"
+          height="1200px"
+           filter="auto"
+          brightness="80%"
+          sx={{
+            backgroundImage: `url(https://image.tmdb.org/t/p/original/${info.backdrop_path})`,
+            backgrounPosition: "center",
+            backgroundSize: "cover",
 
-            <Box h="400px">
-              <Box backdropFilter="auto" backdropContrast="90%">
-                <CardBody>
-                  <Flex>
-                    <Heading size="md" color="black">
-                      {info.title}
-                    </Heading>
-                    <Button colorScheme="teal" variant="link" ml="60px">
-                      Ver trailer
-                    </Button>
-                  </Flex>
+          }}
+        >        
+            <Card  w="80%" mt="50px" backdropFilter="50" backdropContrast="80%" backgroundColor="transparent">
+           
+              <Box backdropFilter="auto" backdropContrast="90%" backgroundColor="transparent">
+                <Flex>
+                  <Box
+                    sx={{
+                      backgroundImage: `url(https://image.tmdb.org/t/p/original/${info.poster_path})`,
+                      backgrounPosition: "center",
+                      backgroundSize: "cover",
+                      width: "40%",
+                     height:"900px"
+                    }}                 
+                  />
 
-                  <Text py="10" color="black">
-                    General
-                  </Text>
-                  <Text fontSize="md" fontWeight="5px">
-                    {info.overview}
-                  </Text>
-                </CardBody>
+                  <Box width="30%" height="100%">
+                    <Box backdropFilter="auto" backdropContrast="50%">
+                      <CardBody>
+                        <Flex>
+                          <Heading size="md" color="white">
+                            {info.title}
+                          </Heading>
+                          <Text pl="10px" color="white">{info.release_date}</Text>
+                          <Button colorScheme="teal" variant="link" ml="60px">
+                            Ver trailer
+                          </Button>
+                        </Flex>
 
-                <CardFooter>
-                  <Text py="10" color="black">
-                    Generos
-                  </Text>
-                </CardFooter>
+                        <Text py="10" color="white">
+                          General
+                        </Text>
+                        <Text fontSize="md" fontWeight="5px" color="white">
+                          {info.overview}
+                        </Text>
+                      </CardBody>
+
+                      <CardFooter>
+                        <Text py="10" color="white">
+                          Generos
+                        </Text>
+                      </CardFooter>
+                    </Box>
+                  </Box>
+                </Flex>
               </Box>
-            </Box>
-          </Card>
-        </Flex>
-      </Center>
-    </Box>
+            </Card>
+       
+        </Box>
+    </>
   );
 }
