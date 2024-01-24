@@ -5,10 +5,14 @@ import { useState, useEffect } from "react";
 import CardMovie from "./CardMovie";
 import useDataMovies from "../hooks/useDataMovies";
 
-export default function Populares() {
-  const params = useParams();
+import ResponsivePagination from "react-responsive-pagination";
+import "react-responsive-pagination/themes/classic.css";
 
+export default function Populares() {
   const { allMovies, info } = useDataMovies();
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const totalPages = 42445;
 
   useEffect(() => {
     allMovies("popular");
@@ -35,6 +39,17 @@ export default function Populares() {
           </Wrap>
         </Flex>
       </Box>
+
+      <Center>
+        <Box w="25%" mb="20px">
+          <ResponsivePagination
+            bg="pink"
+            current={currentPage}
+            total={totalPages}
+            onPageChange={setCurrentPage}
+          />
+        </Box>
+      </Center>
     </Box>
   );
 }
