@@ -1,24 +1,26 @@
 import React from "react";
 import { Center, Text, Box, Flex, Wrap } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
+
 import CardMovie from "./CardMovie";
 import useDataMovies from "../hooks/useDataMovies";
 import ResponsivePagination from "react-responsive-pagination";
 import "react-responsive-pagination/themes/classic.css";
+import Loading from "./Loading";
 
 export default function Lanzamientos() {
+  const { allMovies, info, currentPage, totalPagesLanzamiento, setCurrentPage} = useDataMovies();
 
-  
-  const { allMovies, info } = useDataMovies();
+ 
   useEffect(() => {
     allMovies("now_playing");
-  }, []);
+  }, [currentPage]);
 
-  const [currentPage, setCurrentPage] = useState(1);
-  const totalPages = 149;
+ 
 
   return (
     <Box>
+<Box>
       <Center h="100px">
         <Text fontSize="3xl">Lanzamientos</Text>
       </Center>
@@ -46,11 +48,13 @@ export default function Lanzamientos() {
           <ResponsivePagination
             bg="pink"
             current={currentPage}
-            total={totalPages}
+            total={totalPagesLanzamiento}
             onPageChange={setCurrentPage}
           />
         </Box>
       </Center>
+      </Box>
+
     </Box>
   );
 }

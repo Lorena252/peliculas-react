@@ -11,6 +11,7 @@ import {
   Divider,
   CardFooter,
   Box,
+
 } from "@chakra-ui/react";
 import {ViewIcon } from '@chakra-ui/icons'
 
@@ -20,7 +21,7 @@ export default function CardMovie({id,title,img}) {
 const navigate = useNavigate()
 
   return (
-    <Box onClick={() => navigate(`/detail/${id}`)} >
+    <Box onClick={() => navigate(`/detail/${id}`)}  >
       <Box  w="100%">
         <Flex>
           <Wrap>

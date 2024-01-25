@@ -9,14 +9,14 @@ import ResponsivePagination from "react-responsive-pagination";
 import "react-responsive-pagination/themes/classic.css";
 
 export default function Populares() {
-  const { allMovies, info } = useDataMovies();
+  const { allMovies, info, currentPage, totalPagesPopular, setCurrentPage, oneVideoMovie} = useDataMovies();
 
-  const [currentPage, setCurrentPage] = useState(1);
-  const totalPages = 42445;
+
 
   useEffect(() => {
     allMovies("popular");
-  }, []);
+
+  }, [currentPage]);
 
   return (
     <Box>
@@ -33,6 +33,7 @@ export default function Populares() {
                   id={movie.id}
                   title={movie.title}
                   img={movie.backdrop_path}
+                  keyVideo={oneVideoMovie.keyVideo}
                 />
               );
             })}
@@ -44,8 +45,8 @@ export default function Populares() {
         <Box w="25%" mb="20px">
           <ResponsivePagination
             bg="pink"
-            current={currentPage}
-            total={totalPages}
+            current={currentPage} 
+            total={totalPagesPopular}
             onPageChange={setCurrentPage}
           />
         </Box>
