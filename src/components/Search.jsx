@@ -10,6 +10,7 @@ import {
   Text,
 } from "@chakra-ui/react";
 import useDataMovies from "../hooks/useDataMovies";
+import CardMovie from "./CardMovie";
 
 export default function Search() {
   const [value, setValue] = useState("");
@@ -35,6 +36,7 @@ export default function Search() {
   }, [value]);
 
   return (
+    <Box>
     <Flex>
       <Center w="100%" h="100px">
         <Wrap>
@@ -59,5 +61,32 @@ export default function Search() {
         </Wrap>
       </Center>
     </Flex>
+
+    <Box bg="white">
+<Center>
+<Box ml="20px">
+          <Flex>
+            <Wrap>
+              {coincidences.map((movie) => {
+                return (
+                  <CardMovie
+                    key={movie.id}
+                    id={movie.id}
+                    title={movie.title}
+                    img={movie.backdrop_path}
+                  />
+                );
+              })}
+            </Wrap>
+          </Flex>
+        </Box>
+</Center>
+
+
+
+
+</Box>
+
+    </Box>
   );
 }
