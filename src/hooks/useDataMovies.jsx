@@ -57,6 +57,7 @@ setOneVideo(keyVideo);
 
 
   return {
+    options,
     allMovies,
     oneMovie,
     info,

@@ -1,47 +1,63 @@
 import React from "react";
-import {useState , useEffect} from "react"
+import { useState, useEffect } from "react";
 import {
   FormControl,
-  FormLabel,
-  FormErrorMessage,
-  FormHelperText,
+  Box,
   Input,
-Flex,
-Box,
-Center,
-Text
+  Flex,
+  Wrap,
+  Center,
+  Text,
 } from "@chakra-ui/react";
-
+import useDataMovies from "../hooks/useDataMovies";
 
 export default function Search() {
+  const [value, setValue] = useState("");
+  const [coincidences, setCoincidences] = useState([]);
 
-  const [value, setValue] = useState('')
-  const handleChange = (event) => setValue(event.target.value)
+  const handleChange = (event) => setValue(event.target.value);
 
+  const { options } = useDataMovies();
 
-useEffect(() =>{
-console.log(value)
-}, [value])
+  async function searchMovie(valueInput) {
+    const response = await fetch(
+      `https://api.themoviedb.org/3/search/movie?query=${valueInput}`,
+      options
+    );
+    const data = await response.json();
+    console.log(data.results);
+    setCoincidences(data.results);
+  }
+
+  useEffect(() => {
+    searchMovie(value);
+    console.log(value);
+  }, [value]);
 
   return (
-  <Center w="100%" h="100px">
- < Flex>
-   <Box >
-      <FormControl >
-        <Center>
-        <Input
-        value={value}
-        onChange={handleChange}
-        placeholder='Here is a sample placeholder'
-        size='sm'
-      />
-        {/* <FormLabel>Busca tu pelicula</FormLabel>
-        <Input placeholder='Basic usage' /> */}
-        </Center>
-        {/* <Input type="text" w="500px"/> */}
-      </FormControl>
-    </Box>     
-</Flex>
-</Center>
+    <Flex>
+      <Center w="100%" h="100px">
+        <Wrap>
+          <Box>
+            <Center>
+              <Text fontSize="md" as="b">
+                Busca tu pelicula
+              </Text>
+            </Center>
+
+            <FormControl>
+              <Center>
+                <Input
+                  placeholder="Nombre de la pelicula"
+                  size="lg"
+                  value={value}
+                  onChange={handleChange}
+                />
+              </Center>
+            </FormControl>
+          </Box>
+        </Wrap>
+      </Center>
+    </Flex>
   );
 }
