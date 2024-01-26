@@ -28,7 +28,39 @@ export default function Home() {
 
   return (
     <Carousel mb="50">
-      
-    </Carousel>
+    {recommendations.map((movie) => {
+      return (
+        <Box
+          key={movie.id}
+          sx={{
+            backgroundImage: `url(https://image.tmdb.org/t/p/original/${movie.backdrop_path})`,
+            height: "600px",
+            backgrounPosition: "center",
+            backgroundSize: "cover",
+          }}
+        >
+          <Center>
+            <Box
+              w="50%"
+              mt="40"
+              p="15"
+              bg="white"
+              backdropFilter="auto"
+              backdropContrast="10%"
+              backgroundColor="transparent"
+            >
+              <Heading as="h3" size="lg" color="black" mb="5">
+                {movie.title}
+              </Heading>
+              <Text color="black">{movie.overview}</Text>
+              <Button m="3" colorScheme='pink' variant='solid' onClick={() => navigate(`/detail/${movie.id}`)}>
+                Ver detalle...
+              </Button>
+            </Box>
+          </Center>
+        </Box>
+      );
+    })}
+  </Carousel>
   );
 }
