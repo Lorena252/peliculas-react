@@ -43,7 +43,7 @@ const [oneVideoMovie, setOneVideo] = useState([])
 //obetener la key del video//
 async function oneVideo(id) {
   const response = await fetch(
-    `https://api.themoviedb.org/3/movie/${id}/videos?language=en-US`,
+    `https://api.themoviedb.org/5/movie/${id}/videos?language=en-US`,
     options
   );
   let data = await response.json();
@@ -52,8 +52,6 @@ async function oneVideo(id) {
 setOneVideo(keyVideo);
 
 }
-
-
 
 
   return {

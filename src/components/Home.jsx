@@ -1,46 +1,34 @@
 import React from "react";
-import {  useNavigate } from "react-router-dom" 
-import {Center, Flex, Box, Text, Button} from "@chakra-ui/react";
-import {useState , useEffect} from "react"
+import { useNavigate } from "react-router-dom";
+import { Text, Box, Center, Heading, Button } from "@chakra-ui/react";
+import { useState, useEffect } from "react";
 import useDataMovies from "../hooks/useDataMovies";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { Carousel } from "react-responsive-carousel";
 
 export default function Home() {
+  const { options } = useDataMovies();
 
+  const [recommendations, setRecommendatios] = useState([]);
 
-useEffect(() =>{
+  async function moviesHome() {
+    const response = await fetch(
+      "https://api.themoviedb.org/3/movie/8/recommendations?language=en-US&page=1",
+      options
+    );
+    const data = await response.json();
+    setRecommendatios(data.results);
+  }
 
-}, [])
+  useEffect(() => {
+    moviesHome();
+  }, []);
 
-  const navigate = useNavigate()
-  
-    const outerBoxStyles = {
-      boxSize: '400px',
-      p: '30',    
-      w: "900px",
-      h:"250px"
-    }
-
-    const innerBoxStyles = {
-      textAlign: 'center',
-      boxSize: 'full',
-      color: 'black',
-      fontSize: '30px',
-    }
-
+  const navigate = useNavigate();
 
   return (
-<Box h="400px" w="100%" backgroundImage="url(https://picsum.photos/id/1068/200/300)"   > 
-    <Flex flexWrap='wrap'  justifyContent='space-evenly'>
-      <Box sx={outerBoxStyles}  >
-        <Box sx={innerBoxStyles} backdropFilter='auto' backdropContrast='30%' >
-            <Text>Titulo</Text>
-          <Text fontSize='md'>Descripcion de la pelicula</Text>
-          <Button colorScheme='cyan' variant="ghost" onClick={() => navigate("/detail")} >Ver más</Button>
-        </Box>
-      </Box>
-    </Flex>
-
-
-    </Box>
+    <Carousel mb="50">
+      
+    </Carousel>
   );
 }
