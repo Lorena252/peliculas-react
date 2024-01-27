@@ -42,7 +42,7 @@ const [rated, setRated] = useState([])
   const navigate = useNavigate();
 
   return (
-    <Box>
+    <Box h="2700px">
     <Carousel mb="50">
     {recommendations.map((movie) => {
       return (
