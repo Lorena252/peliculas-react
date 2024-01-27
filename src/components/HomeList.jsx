@@ -1,13 +1,18 @@
-import React from "react";
-import {Text,Box,Icon} from "@chakra-ui/react";
-import {  useNavigate } from "react-router-dom" 
+
+import {
+  Text,
+  Box,
+  Icon,
+
+} from "@chakra-ui/react";
+import { CheckIcon } from "@chakra-ui/icons";
 
 
+export default function HomeList({ dataRated, dataPopulares }) {
 
-export default function HomeLists(){
-return(
-<>
-
-</>
-)
+  return (
+    <Box>
+     
+    </Box>
+  );
 }

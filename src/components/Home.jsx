@@ -5,11 +5,14 @@ import { useState, useEffect } from "react";
 import useDataMovies from "../hooks/useDataMovies";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
+  import HomeList from "./HomeList";
 
 export default function Home() {
-  const { options } = useDataMovies();
+  const { options, allMovies,info} = useDataMovies();
 
   const [recommendations, setRecommendatios] = useState([]);
+const [rated, setRated] = useState([])
+
 
   async function moviesHome() {
     const response = await fetch(
@@ -19,14 +22,27 @@ export default function Home() {
     const data = await response.json();
     setRecommendatios(data.results);
   }
+  async function topRated() {
+    const response = await fetch(
+      "https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1",
+      options
+    );
+    const data = await response.json();
+    console.log(data.results)
+    setRated(data.results);
+  }
+
 
   useEffect(() => {
     moviesHome();
+    topRated()
+    allMovies("popular")
   }, []);
 
   const navigate = useNavigate();
 
   return (
+    <Box>
     <Carousel mb="50">
     {recommendations.map((movie) => {
       return (
@@ -62,5 +78,10 @@ export default function Home() {
       );
     })}
   </Carousel>
+
+
+<HomeList  dataPopulares={info} dataRated={rated} />
+
+</Box>
   );
 }
