@@ -28,7 +28,6 @@ export default function DetailMovie() {
   return (
 <Box>
 {info?.title ? (
-
       <Box
         display="flex"
         justifyContent="center"

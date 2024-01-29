@@ -25,14 +25,18 @@ const navigate = useNavigate()
       <Box  w="100%">
         <Flex>
           <Wrap>
-            <Card w="280px" m="2px" mb="25px" >
+            <Card w="280px" m="2px" mb="25px"  >
               <Box
+              h="500px"
+              bgSize="cover"
+             bgPosition="center"
+              width="100%"
                 sx={{                
                   backgroundImage: `url(https://image.tmdb.org/t/p/original/${img})`,           
-                 height:"500px",
-                   width:"100%"
-                }}
+                  maxW:'md'
+                }}           
               />
+      
               <Stack spacing="1" h="55px">
                 <Center>
                   <Heading as="h5" size="sm" pt="15px">

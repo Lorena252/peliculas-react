@@ -15,78 +15,72 @@ import CardMovie from "./CardMovie";
 export default function Search() {
   const [value, setValue] = useState("");
   const [coincidences, setCoincidences] = useState([]);
-
-  const handleChange = (event) => setValue(event.target.value);
-
   const { options } = useDataMovies();
 
-  async function searchMovie(valueInput) {
+  const handleChange = (event) => {
+    setValue(event.target.value);
+  };
+
+  async function searchMovie(value) {
     const response = await fetch(
-      `https://api.themoviedb.org/3/search/movie?query=${valueInput}`,
+      `https://api.themoviedb.org/3/search/movie?query=${value}`,
       options
     );
     const data = await response.json();
-    console.log(data.results);
     setCoincidences(data.results);
   }
 
   useEffect(() => {
     searchMovie(value);
-    console.log(value);
   }, [value]);
 
   return (
     <Box>
-    <Flex>
-      <Center w="100%" h="100px">
-        <Wrap>
-          <Box>
-            <Center>
-              <Text fontSize="md" as="b">
-                Busca tu pelicula
-              </Text>
-            </Center>
-
-            <FormControl>
+      <Flex>
+        <Center w="100%" h="100px">
+          <Wrap>
+            <Box>
               <Center>
-                <Input
-                  placeholder="Nombre de la pelicula"
-                  size="lg"
-                  value={value}
-                  onChange={handleChange}
-                />
+                <Text fontSize="md" as="b">
+                  Busca tu pelicula
+                </Text>
               </Center>
-            </FormControl>
-          </Box>
-        </Wrap>
-      </Center>
-    </Flex>
 
-    <Box bg="white">
-<Center>
-<Box ml="20px">
-          <Flex>
-            <Wrap>
-              {coincidences.map((movie) => {
-                return (
-                  <CardMovie
-                    key={movie.id}
-                    id={movie.id}
-                    title={movie.title}
-                    img={movie.backdrop_path}
+              <FormControl>
+                <Center>
+                  <Input
+                    placeholder="Nombre de la pelicula"
+                    size="lg"
+                    value={value}
+                    onChange={handleChange}
                   />
-                );
-              })}
-            </Wrap>
-          </Flex>
-        </Box>
-</Center>
+                </Center>
+              </FormControl>
+            </Box>
+          </Wrap>
+        </Center>
+      </Flex>
 
-
-
-
-</Box>
-
+      <Box bg="white">
+        <Center>
+          <Box ml="20px">
+            <Flex>
+              <Wrap>
+                {coincidences.map((movie) => {
+                  return (
+                    <CardMovie
+                      key={movie.id}
+                      id={movie.id}
+                      title={movie.title}
+                      img={movie.backdrop_path}
+                    />
+                  );
+                })}
+              </Wrap>
+            </Flex>
+          </Box>
+        </Center>
+      </Box>
     </Box>
   );
 }

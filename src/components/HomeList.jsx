@@ -14,12 +14,14 @@ import {
 import { CheckIcon } from "@chakra-ui/icons";
 import { useNavigate, useParams } from "react-router-dom";
 
+
 export default function HomeList({ dataRated, dataPopulares }) {
 
-let {id} = useParams()
+
   const navigate = useNavigate()
   return (
-    <Box>
+    <Box >
+  
            <Flex>
         <Card h="600px" w="40%" ml="40" mb="20" mt="15">
           <Box bg="black">
@@ -30,8 +32,8 @@ let {id} = useParams()
             </Center>
           </Box>
           <Box>
+        
             {dataPopulares.map((moviePopular) => {
-          
               return (
                  
                 <Card key={moviePopular.id} mb="1">
@@ -69,9 +71,10 @@ let {id} = useParams()
                 </Card>
               );
             })}
+
           </Box>
         </Card>
-
+      
         <Card h="600px" w="40%" ml="10" mt="15">
           <Box bg="black">
             <Center>
@@ -121,6 +124,7 @@ let {id} = useParams()
           </Box>
         </Card>
       </Flex>
+
     </Box>
   );
 }
