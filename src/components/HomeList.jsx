@@ -9,6 +9,7 @@ import {
   CardHeader,
   IconButton,
   Center,
+  Spacer
  
 } from "@chakra-ui/react";
 import { CheckIcon } from "@chakra-ui/icons";
@@ -25,8 +26,8 @@ export default function HomeList({ dataRated, dataPopulares }) {
            <Flex>
         <Card h="600px" w="40%" ml="40" mb="20" mt="15">
           <Box bg="black">
-            <Center>
-              <Text fontSize="3xl" as="b" h="70px" bg="black" color="pink">
+            <Center m="5">
+              <Text fontSize="3xl" as="b"  bg="black" color="pink">
                 Peliculas Populares
               </Text>
             </Center>
@@ -46,6 +47,8 @@ export default function HomeList({ dataRated, dataPopulares }) {
                         flexWrap="wrap"
                       >
                         <Image
+                             bgSize="cover"
+                             bgPosition="center"
                           sx={{
                             backgroundImage: `url(https://image.tmdb.org/t/p/original/${moviePopular.backdrop_path})`,
                             borderRadius: "full",
@@ -54,8 +57,9 @@ export default function HomeList({ dataRated, dataPopulares }) {
                           }}
                         />
                         <Box>
-                          <Text onClick={() => navigate(`/detail/${moviePopular.id}`)} >{moviePopular.title}</Text>
+                          <Text as='b' cursor="pointer" onClick={() => navigate(`/detail/${moviePopular.id}`)} >{moviePopular.title}</Text>
                         </Box>
+                        <Spacer/>
                         <IconButton
                           isRound={true}
                           variant="solid"
@@ -77,8 +81,8 @@ export default function HomeList({ dataRated, dataPopulares }) {
       
         <Card h="600px" w="40%" ml="10" mt="15">
           <Box bg="black">
-            <Center>
-              <Text fontSize="3xl" as="b" h="70px" bg="black" color="pink">
+            <Center m="5">
+              <Text fontSize="3xl" as="b"  bg="black" color="pink">
                 Peliculas Mejor Puntadas
               </Text>
             </Center>
@@ -96,6 +100,8 @@ export default function HomeList({ dataRated, dataPopulares }) {
                         flexWrap="wrap"
                       >
                         <Image
+                         bgSize="cover"
+                         bgPosition="center"
                           sx={{
                             backgroundImage: `url(https://image.tmdb.org/t/p/original/${movieRated.backdrop_path})`,
                             borderRadius: "full",
@@ -104,8 +110,9 @@ export default function HomeList({ dataRated, dataPopulares }) {
                           }}
                         />
                         <Box>
-                          <Text onClick={() => navigate(`/detail/${movieRated.id}`)} >{movieRated.title}</Text>
+                          <Text as="b" cursor="pointer" onClick={() => navigate(`/detail/${movieRated.id}`)} >{movieRated.title}</Text>
                         </Box>
+                        <Spacer/>
                         <IconButton
                           isRound={true}
                           variant="solid"
