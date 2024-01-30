@@ -11,100 +11,107 @@ import {
   Heading,
   CardFooter,
   Flex,
+  Square
 } from "@chakra-ui/react";
 
 export default function DetailMovie() {
+  const { oneMovie, info} = useDataMovies();
 
-  const { oneMovie, info, oneVideo, oneVideoMovie } = useDataMovies();
-
-  let { id} = useParams();
+  let { id } = useParams();
 
   useEffect(() => {
     oneMovie(id);
+
   }, []);
 
-
-
   return (
-<Box>
-{info?.title ? (
-      <Box
-        display="flex"
-        justifyContent="center"
-        height="1200px"
-        filter="auto"
-        brightness="80%"
-        sx={{
-          backgroundImage: `url(https://image.tmdb.org/t/p/original/${info.backdrop_path})`,
-          backgrounPosition: "center",
-          backgroundSize: "cover",
-        }}
-      >
-        <Card
-          w="80%"
-          mt="50px"
-          backdropFilter="50"
-          backdropContrast="80%"
-          backgroundColor="transparent"
+    <Box>
+      {info?.title ? (
+     
+        <Box
+
+          display="flex"
+          justifyContent="center"
+          height="1200px"
+          filter="auto"
+          brightness="80%"
+          sx={{
+            backgroundImage: `url(https://image.tmdb.org/t/p/original/${info.backdrop_path})`,
+            backgrounPosition: "center",
+            backgroundSize: "cover",
+          }}
         >
-          <Box
-            backdropFilter="auto"
-            backdropContrast="90%"
+          <Card
+            w="80%"
+            mt="50px"
+            backdropFilter="50"
+            backdropContrast="80%"
             backgroundColor="transparent"
           >
-            <Flex>
-              <Box
-                sx={{
-                  backgroundImage: `url(https://image.tmdb.org/t/p/original/${info.poster_path})`,
-                  backgrounPosition: "center",
-                  backgroundSize: "cover",
-                  width: "40%",
-                  height: "900px",
-                }}
-              />
+            <Box
+              backdropFilter="auto"
+              backdropContrast="90%"
+              backgroundColor="transparent"
+            >
+              <Flex>
+                <Box
+                  sx={{
+                    backgroundImage: `url(https://image.tmdb.org/t/p/original/${info.poster_path})`,
+                    backgrounPosition: "center",
+                    backgroundSize: "cover",
+                    width: "40%",
+                    height: "900px",
+                  }}
+                />
 
-              <Box width="30%" height="100%">
-                <Box backdropFilter="auto" backdropContrast="50%">
-                  <CardBody>
-                    <Flex>
-                      <Heading size="md" color="white">
-                        {info.title}
-                      </Heading>
-                      <Text pl="10px" color="white">
-                        {info.release_date}
+                <Box width="30%" height="100%">
+                  <Box backdropFilter="auto" backdropContrast="50%">
+                    <CardBody>
+                      <Flex>
+                        <Heading size="md" color="white">
+                          {info.title}
+                        </Heading>
+                        <Text pl="10px" color="white">
+                          {info.release_date}
+                        </Text>
+                 
+                        {/* <Link
+                     
+                          to={`https://www.youtube.com/watch?v=${oneVideoMovie}`}
+                        >
+                          <Text    ml="15" color="white">Ir al link</Text>
+                        </Link> */}
+                         {/* <Text    ml="15" color="white"   onClick={() => oneVideo(id)}>Ir al link</Text> */}
+                      </Flex>
+
+                      <Text py="10" color="white" >
+                        General
                       </Text>
-                      <Link
-                        to={`https://www.youtube.com/watch?v=${oneVideoMovie}`}
-                      >
-                        Ir al link
-                      </Link>
-                    </Flex>
-
-                    <Text py="10" color="white">
-                      General
-                    </Text>
-                    <Text fontSize="md" fontWeight="5px" color="white">
-                      {info.overview}
-                    </Text>
-                  </CardBody>
-
-                  <CardFooter>
-                    <Text py="10" color="white">
+                      <Text fontSize="md" fontWeight="5px" color="white">
+                        {info.overview}
+                      </Text>
+                    </CardBody>
+                    <Text ml="5" color="white" >
                       Generos
                     </Text>
-                  </CardFooter>
+                    <CardFooter ml="5" color="white" >
+                      {
+                        <ul>
+                          {info.genres.map((movieGenre) => {
+                            return <li key={movieGenre.name}>{movieGenre.name}</li>;
+                          })}
+                        </ul>
+                      }
+                    </CardFooter>
+                  </Box>
                 </Box>
-              </Box>
-            </Flex>
-          </Box>
-        </Card>
-      </Box>
-    
-    ) : (
-    <Loading/>
-    )}
-  </Box>
-
-
+              </Flex>
+            </Box>
+          </Card>
+        </Box>
+      ) : (
+        <Loading />
+      )}
+    </Box>
   );
 }

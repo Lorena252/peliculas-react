@@ -21,7 +21,8 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/lanzamientos" element={<Lanzamientos fetch="now_playing"/>} />
         <Route path="/populares" element={<Populares fetch="popular"/>} />
-        <Route path="/buscar" element={<Search/>} />
+        <Route path="/buscar" element={<Search/>}/>
+        <Route path="/buscar/:value" element={<Search/>}/>
         <Route path="/detail/:id" element={<DetailMovie fetch="id"/>} /> 
       </Routes>
       <Footer />

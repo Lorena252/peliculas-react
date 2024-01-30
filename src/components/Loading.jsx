@@ -1,9 +1,6 @@
-import { Spinner ,Center} from "@chakra-ui/react";
-import React, { useEffect } from "react";
-import useDataMovies from "../hooks/useDataMovies";
+import { Spinner ,Center,Text} from "@chakra-ui/react";
 
 export default function Loading(){
-console.log("loading")
     return(
         <>
         <Center h="1000px">
@@ -14,6 +11,8 @@ console.log("loading")
              color='blue.500'
              size='xl'
             />
+
+            <Text> Cargando...</Text>
         </Center>
         </>
     )

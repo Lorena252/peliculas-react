@@ -11,14 +11,18 @@ import {
 } from "@chakra-ui/react";
 import useDataMovies from "../hooks/useDataMovies";
 import CardMovie from "./CardMovie";
+import { useNavigate } from "react-router-dom";
 
 export default function Search() {
   const [value, setValue] = useState("");
   const [coincidences, setCoincidences] = useState([]);
   const { options } = useDataMovies();
 
+const navigate = useNavigate()
+
   const handleChange = (event) => {
     setValue(event.target.value);
+   
   };
 
   async function searchMovie(value) {
@@ -32,6 +36,12 @@ export default function Search() {
 
   useEffect(() => {
     searchMovie(value);
+    if (value !== "") {
+           navigate(`/buscar/${value}`)
+    } else {
+      navigate("/buscar")
+    }
+
   }, [value]);
 
   return (

@@ -9,7 +9,7 @@ import ResponsivePagination from "react-responsive-pagination";
 import "react-responsive-pagination/themes/classic.css";
 
 export default function Populares() {
-  const { allMovies, info, currentPage, totalPagesPopular, setCurrentPage, oneVideoMovie} = useDataMovies();
+  const { allMovies, info, currentPage, totalPagesPopular, setCurrentPage} = useDataMovies();
 
 
 
@@ -33,7 +33,6 @@ export default function Populares() {
                   id={movie.id}
                   title={movie.title}
                   img={movie.backdrop_path}
-                  keyVideo={oneVideoMovie.keyVideo}
                 />
               );
             })}

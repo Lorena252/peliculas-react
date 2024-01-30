@@ -90,6 +90,7 @@ export default function HomeList({ dataRated, dataPopulares }) {
           <Box>
             {dataRated.map((movieRated) => {
               return (
+             
                 <Card key={movieRated.id} mb="1">
                   <CardHeader>
                     <Flex spacing="4">

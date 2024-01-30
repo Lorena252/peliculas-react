@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Loading from "../components/Loading";
 
 function useDataMovies() {
@@ -9,8 +9,6 @@ function useDataMovies() {
   const totalPagesPopular =  42445
 
   const totalPagesLanzamiento =  149
-
-const [oneVideoMovie, setOneVideo] = useState([])
 
   let options = {
     method: "GET",
@@ -36,22 +34,9 @@ const [oneVideoMovie, setOneVideo] = useState([])
       options
     );
     const data = await response.json();
+    console.log(data)
   setInfo(data);
-  console.log(data)
   }
-
-//obetener la key del video//
-async function oneVideo(id) {
-  const response = await fetch(
-    `https://api.themoviedb.org/5/movie/${id}/videos?language=en-US`,
-    options
-  );
-  let data = await response.json();
-  const keyVideo = data.results
-    console.log(keyVideo)
-setOneVideo(keyVideo);
-
-}
 
 
   return {
@@ -63,9 +48,8 @@ setOneVideo(keyVideo);
     setCurrentPage,
     totalPagesPopular,
       totalPagesLanzamiento,
-      oneVideoMovie,
-      oneVideo,
-      
+
+   
   };
 }
 
