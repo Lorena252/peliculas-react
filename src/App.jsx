@@ -7,7 +7,7 @@ import Search from "./components/Search";
 import Home from "./components/Home";
 import Footer from "./components/Footer";
 import DetailMovie from "./components/DetailMovie";
-
+import FavoritesContextProvider from "./context/FavoritesContext";
 
 function App() {
 
@@ -15,6 +15,7 @@ function App() {
 
   return (
 
+<FavoritesContextProvider>
     <BrowserRouter>
       <Header/>
       <Routes>
@@ -27,7 +28,8 @@ function App() {
       </Routes>
       <Footer />
     </BrowserRouter>
-    
+    </FavoritesContextProvider>
+
   );
     
 }
