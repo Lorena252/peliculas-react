@@ -2,7 +2,7 @@ import React from "react";
 import { useEffect, useState } from "react";
 import useDataMovies from "../hooks/useDataMovies";
 import Loading from "./Loading";
-import { useParams, useNavigate, Link } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import {
   Text,
   Box,
@@ -11,16 +11,31 @@ import {
   Heading,
   CardFooter,
   Flex,
-  Square
+
 } from "@chakra-ui/react";
 
 export default function DetailMovie() {
-  const { oneMovie, info} = useDataMovies();
+  const { oneMovie, info, options} = useDataMovies();
+   const [trailer,setTrailer] = useState("")
 
   let { id } = useParams();
 
+  async function getVideo(id) {
+    const response = await fetch(
+      `https://api.themoviedb.org/3/movie/${id}/videos?language=en-US`,
+      options
+    );
+    const data = await response.json();
+    console.log(data.results[0]?.key)
+    const keyVideo = data.results[0]?.key
+  setTrailer(keyVideo);
+  }
+
+
   useEffect(() => {
     oneMovie(id);
+getVideo(id)
+
 
   }, []);
 
@@ -75,13 +90,13 @@ export default function DetailMovie() {
                           {info.release_date}
                         </Text>
                  
-                        {/* <Link
+                        { <Link
                      
-                          to={`https://www.youtube.com/watch?v=${oneVideoMovie}`}
+                          to={`https://www.youtube.com/watch?v=${trailer}`}
                         >
-                          <Text    ml="15" color="white">Ir al link</Text>
-                        </Link> */}
-                         {/* <Text    ml="15" color="white"   onClick={() => oneVideo(id)}>Ir al link</Text> */}
+                          <Text  as="b" ml="15" color="white">Ir al link</Text>
+                        </Link> }
+                         
                       </Flex>
 
                       <Text py="10" color="white" >
