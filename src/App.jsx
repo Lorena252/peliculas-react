@@ -8,6 +8,7 @@ import Home from "./components/Home";
 import Footer from "./components/Footer";
 import DetailMovie from "./components/DetailMovie";
 import FavoritesContextProvider from "./context/FavoritesContext";
+import Favorites from "./components/Favorites";
 
 function App() {
 
@@ -25,6 +26,7 @@ function App() {
         <Route path="/buscar" element={<Search/>}/>
         <Route path="/buscar/:value" element={<Search/>}/>
         <Route path="/detail/:id" element={<DetailMovie fetch="id"/>} /> 
+        <Route path="/Favoritos" element={<Favorites/>} /> 
       </Routes>
       <Footer />
     </BrowserRouter>

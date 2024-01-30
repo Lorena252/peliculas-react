@@ -52,6 +52,20 @@ export default function Header() {
       >
         Buscar
       </Button>
+
+      <Button
+        onClick={() => navigate("/favoritos")}
+        m="2"
+        w="150px"
+        size="lg"
+        h="90px"
+        colorScheme="pink"
+        variant="ghost"
+      >
+        Favoritos
+      </Button>
+
+
     </Box>
   );
 }
