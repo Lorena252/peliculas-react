@@ -11,12 +11,11 @@ import {
   Heading,
   CardFooter,
   Flex,
-
 } from "@chakra-ui/react";
 
 export default function DetailMovie() {
-  const { oneMovie, info, options} = useDataMovies();
-   const [trailer,setTrailer] = useState("")
+  const { oneMovie, info, options } = useDataMovies();
+  const [trailer, setTrailer] = useState("");
 
   let { id } = useParams();
 
@@ -26,25 +25,19 @@ export default function DetailMovie() {
       options
     );
     const data = await response.json();
-    console.log(data.results[0]?.key)
-    const keyVideo = data.results[0]?.key
-  setTrailer(keyVideo);
+    const keyVideo = data.results[0]?.key;
+    setTrailer(keyVideo);
   }
-
 
   useEffect(() => {
     oneMovie(id);
-getVideo(id)
-
-
+    getVideo(id);
   }, []);
 
   return (
     <Box>
       {info?.title ? (
-     
         <Box
-
           display="flex"
           justifyContent="center"
           height="1200px"
@@ -89,31 +82,35 @@ getVideo(id)
                         <Text pl="10px" color="white">
                           {info.release_date}
                         </Text>
-                 
-                        { <Link
-                     
-                          to={`https://www.youtube.com/watch?v=${trailer}`}
-                        >
-                          <Text  as="b" ml="15" color="white">Ir al link</Text>
-                        </Link> }
-                         
+
+                        {
+                          <Link
+                            to={`https://www.youtube.com/watch?v=${trailer}`}
+                          >
+                            <Text as="b" ml="15" color="white">
+                              Ir al link
+                            </Text>
+                          </Link>
+                        }
                       </Flex>
 
-                      <Text py="10" color="white" >
+                      <Text py="10" color="white">
                         General
                       </Text>
                       <Text fontSize="md" fontWeight="5px" color="white">
                         {info.overview}
                       </Text>
                     </CardBody>
-                    <Text ml="5" color="white" >
+                    <Text ml="5" color="white">
                       Generos
                     </Text>
-                    <CardFooter ml="5" color="white" >
+                    <CardFooter ml="5" color="white">
                       {
                         <ul>
                           {info.genres.map((movieGenre) => {
-                            return <li key={movieGenre.name}>{movieGenre.name}</li>;
+                            return (
+                              <li key={movieGenre.name}>{movieGenre.name}</li>
+                            );
                           })}
                         </ul>
                       }

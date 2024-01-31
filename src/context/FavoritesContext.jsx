@@ -6,20 +6,16 @@ export const FavoritesContext = createContext();
 const FavoritesContextProvider = ({ children }) => {
   const [favorites, setFavorites] = useState([]);
 
-
   const addFavs = (movie) => {
-    setFavorites([...favorites,movie]);
-    console.log("Addfav")
+    setFavorites([...favorites, movie]);
   };
 
   const delFavs = (id) => {
     setFavorites(favorites.filter((movie) => movie.id !== id));
-console.log("delF")
   };
 
   const isFavs = (id) => {
-   return favorites.some((movie) => movie.id === id);
-  
+    return favorites.some((movie) => movie.id === id);
   };
 
   const data = {
