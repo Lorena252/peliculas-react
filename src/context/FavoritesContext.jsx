@@ -8,15 +8,18 @@ const FavoritesContextProvider = ({ children }) => {
 
 
   const addFavs = (movie) => {
-    setFavorites(movie);
+    setFavorites([...favorites,movie]);
+    console.log("Addfav")
   };
 
   const delFavs = (id) => {
     setFavorites(favorites.filter((movie) => movie.id !== id));
+console.log("delF")
   };
 
   const isFavs = (id) => {
-    favorites.some((movie) => movie.id === id);
+   return favorites.some((movie) => movie.id === id);
+  
   };
 
   const data = {

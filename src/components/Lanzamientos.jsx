@@ -33,6 +33,7 @@ export default function Lanzamientos() {
                     id={movie.id}
                     title={movie.title}
                     img={movie.backdrop_path}
+                    dataMovie={movie}
                   />
                 );
               })}

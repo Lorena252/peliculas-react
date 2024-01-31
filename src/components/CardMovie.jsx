@@ -21,7 +21,7 @@ import { FaRegStar, FaStar } from "react-icons/fa6";
 
 
 
-export default function CardMovie({id,title,img}) {
+export default function CardMovie({id,title,img,dataMovie}) {
 
  const {addFavs, delFavs,isFavs} = useContext(FavoritesContext)
 
@@ -70,16 +70,17 @@ export default function CardMovie({id,title,img}) {
 
 
  <Box mb="15px" >
-  <Card  h="35px">
+  <Card  h="35px" >
   <Center>
-     <Icon mt="10px" as={FaStar} color="yelow"  onClick={addFavs}/>
-  <Icon mt="10px" as={FaRegStar} onClick={delFavs}  />
- 
+    { isFavs(dataMovie.id) ? (
+     <Box ><Icon mt="10px" color="orange" as={FaRegStar}onClick={() => delFavs(dataMovie.id)}/> </Box> ) :
+  ( <Box ><Icon mt="10px"  as={FaStar} onClick={() => addFavs(dataMovie)}  /> </Box> )
+    } 
   </Center>
     </Card>
   </Box>
 
-  
+   
 
 </Box>
 
