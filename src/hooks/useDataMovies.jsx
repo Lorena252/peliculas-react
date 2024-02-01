@@ -1,14 +1,14 @@
-import { useState, useEffect } from "react";
-import Loading from "../components/Loading";
+import { useState } from "react";
+
 
 function useDataMovies() {
   const apiKey = import.meta.env.VITE_SOME_KEY;
 
   const [info, setInfo] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const totalPagesPopular =  42445
+  const totalPagesPopular = 42445;
 
-  const totalPagesLanzamiento =  149
+  const totalPagesLanzamiento = 149;
 
   let options = {
     method: "GET",
@@ -25,7 +25,6 @@ function useDataMovies() {
     );
     const data = await response.json();
     setInfo(data.results);
-  
   }
 
   async function oneMovie(id) {
@@ -34,10 +33,8 @@ function useDataMovies() {
       options
     );
     const data = await response.json();
-    console.log(data)
-  setInfo(data);
+    setInfo(data);
   }
-
 
   return {
     options,
@@ -47,9 +44,7 @@ function useDataMovies() {
     currentPage,
     setCurrentPage,
     totalPagesPopular,
-      totalPagesLanzamiento,
-
-   
+    totalPagesLanzamiento,
   };
 }
 

@@ -11,13 +11,20 @@ import {
   Heading,
   CardFooter,
   Flex,
+  Icon,
+  Center,
+  Spacer
 } from "@chakra-ui/react";
-
+import { GoVideo } from "react-icons/go";
 export default function DetailMovie() {
   const { oneMovie, info, options } = useDataMovies();
   const [trailer, setTrailer] = useState("");
 
   let { id } = useParams();
+
+  const date= new Date(info.release_date);
+  const year = date.getFullYear();
+
 
   async function getVideo(id) {
     const response = await fetch(
@@ -72,26 +79,35 @@ export default function DetailMovie() {
                   }}
                 />
 
-                <Box width="30%" height="100%">
+                <Box width="50%" height="100%">
                   <Box backdropFilter="auto" backdropContrast="50%">
                     <CardBody>
                       <Flex>
-                        <Heading size="md" color="white">
+                        <Heading size="md" color="white" w="250px" >
                           {info.title}
                         </Heading>
+                        <Spacer />
                         <Text pl="10px" color="white">
-                          {info.release_date}
+                          {year}
                         </Text>
-
-                        {
-                          <Link
-                            to={`https://www.youtube.com/watch?v=${trailer}`}
-                          >
-                            <Text as="b" ml="15" color="white">
-                              Ir al link
-                            </Text>
-                          </Link>
-                        }
+                        <Spacer />
+                        <Box  w="50%" h="55px" pl="5px">
+                          <Center>
+                            
+                            {
+                              <Link
+                                bg="red"
+                                to={`https://www.youtube.com/watch?v=${trailer}`}
+                              >
+                                <Icon boxSize={6}  color="white"  as={GoVideo} />
+                                <Text fontSize='xl' as="b" color="white" ml="10px">
+                                  Ir al link
+                                </Text>
+                              </Link>
+                            }
+                          
+                          </Center>
+                        </Box>
                       </Flex>
 
                       <Text py="10" color="white">

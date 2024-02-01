@@ -18,11 +18,10 @@ export default function Search() {
   const [coincidences, setCoincidences] = useState([]);
   const { options } = useDataMovies();
 
-const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const handleChange = (event) => {
     setValue(event.target.value);
-   
   };
 
   async function searchMovie(value) {
@@ -37,11 +36,10 @@ const navigate = useNavigate()
   useEffect(() => {
     searchMovie(value);
     if (value !== "") {
-           navigate(`/buscar/${value}`)
+      navigate(`/buscar/${value}`);
     } else {
-      navigate("/buscar")
+      navigate("/buscar");
     }
-
   }, [value]);
 
   return (
@@ -83,6 +81,7 @@ const navigate = useNavigate()
                       id={movie.id}
                       title={movie.title}
                       img={movie.backdrop_path}
+                      dataMovie={movie}
                     />
                   );
                 })}
