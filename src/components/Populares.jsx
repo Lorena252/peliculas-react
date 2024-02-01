@@ -1,29 +1,25 @@
 import React from "react";
-import { useParams } from "react-router-dom";
-import { Center, Text, Box, Flex, Wrap } from "@chakra-ui/react";
-import { useState, useEffect } from "react";
+import { Center, Text, Box, Flex, Wrap} from "@chakra-ui/react";
+import { useEffect } from "react";
 import CardMovie from "./CardMovie";
 import useDataMovies from "../hooks/useDataMovies";
-
 import ResponsivePagination from "react-responsive-pagination";
 import "react-responsive-pagination/themes/classic.css";
 
 export default function Populares() {
-  const { allMovies, info, currentPage, totalPagesPopular, setCurrentPage} = useDataMovies();
-
-
+  const { allMovies, info, currentPage, totalPagesPopular, setCurrentPage } =
+    useDataMovies();
 
   useEffect(() => {
     allMovies("popular");
-
   }, [currentPage]);
 
   return (
-    <Box>
+    <Box p="5">
       <Center h="100px">
         <Text fontSize="3xl">Populares</Text>
       </Center>
-      <Box>
+      <Box pl="5px">
         <Flex>
           <Wrap>
             {info.map((movie) => {
@@ -45,7 +41,7 @@ export default function Populares() {
         <Box w="25%" mb="20px">
           <ResponsivePagination
             bg="pink"
-            current={currentPage} 
+            current={currentPage}
             total={totalPagesPopular}
             onPageChange={setCurrentPage}
           />

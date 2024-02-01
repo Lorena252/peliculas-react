@@ -30,7 +30,7 @@ export default function CardMovie({ id, title, img, dataMovie }) {
           <Box w="100%">
             <Flex>
               <Wrap>
-                <Card w="280px" m="2px" br="red">
+                <Card w="280px" m="1px" br="red">
                   <Box
                     h="500px"
                     bgSize="cover"

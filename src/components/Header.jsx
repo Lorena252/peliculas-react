@@ -7,7 +7,7 @@ export default function Header() {
   const navigate = useNavigate();
 
   return (
-    <Box h="100px" bg="black">
+    <Box  bg="black">
       <Icon boxSize={14} color="pink" pt="2" ml="2" as={PiPopcornBold} />
       <Button
         onClick={() => navigate("/")}
