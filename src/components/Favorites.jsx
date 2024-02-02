@@ -3,6 +3,7 @@ import { Center, Text, Box, Flex, Wrap, Card } from "@chakra-ui/react";
 import { FavoritesContext } from "../context/FavoritesContext";
 import CardMovie from "./CardMovie";
 import { useContext } from "react";
+import Loading from "./Loading"
 export default function Favorites() {
 
   const { favorites } = useContext(FavoritesContext);
@@ -18,7 +19,10 @@ export default function Favorites() {
             <Box m="20px">
               <Flex>
                 <Wrap>
-                {favorites.map((movie) => {
+                {favorites.length === 0 ? (
+              <Loading/>
+                ) : (
+                favorites.map((movie) => {
                 return (
                   <CardMovie
                     key={movie.id}
@@ -28,7 +32,7 @@ export default function Favorites() {
                     dataMovie={movie}
                   />
                 );
-              })}
+              }))}
 
                 </Wrap>
               </Flex>

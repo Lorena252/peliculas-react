@@ -43,7 +43,7 @@ export default function Search() {
   }, [value]);
 
   return (
-    <Box>
+    <Box pb="500px">
       <Flex>
         <Center w="100%" h="100px">
           <Wrap>

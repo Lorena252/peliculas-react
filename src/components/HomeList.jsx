@@ -11,6 +11,7 @@ import {
 } from "@chakra-ui/react";
 import { CheckIcon } from "@chakra-ui/icons";
 import { useNavigate } from "react-router-dom";
+import Loading from "./Loading";
 
 export default function HomeList({ dataRated, dataPopulares }) {
   const navigate = useNavigate();
@@ -27,7 +28,11 @@ export default function HomeList({ dataRated, dataPopulares }) {
               </Center>
             </Box>
             <Box>
-              {dataPopulares.map((moviePopular) => {
+              {
+               dataPopulares.length === 0 ? (
+                <Loading />
+              ) : (
+              dataPopulares.map((moviePopular) => {
                 return (
                   <Card key={moviePopular.id} mb="1">
                     <CardHeader>
@@ -75,7 +80,7 @@ export default function HomeList({ dataRated, dataPopulares }) {
                     </CardHeader>
                   </Card>
                 );
-              })}
+              }))}
             </Box>
           </Card>
 
@@ -88,7 +93,11 @@ export default function HomeList({ dataRated, dataPopulares }) {
               </Center>
             </Box>
             <Box>
-              {dataRated.map((movieRated) => {
+              {             
+              dataRated.length === 0 ? (
+                <Loading />
+              ) : (
+              dataRated.map((movieRated) => {
                 return (
                   <Card key={movieRated.id} mb="1">
                     <CardHeader>
@@ -135,7 +144,7 @@ export default function HomeList({ dataRated, dataPopulares }) {
                     </CardHeader>
                   </Card>
                 );
-              })}
+              }))}
             </Box>
           </Card>
         </Flex>

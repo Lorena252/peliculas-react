@@ -6,7 +6,7 @@ import useDataMovies from "../hooks/useDataMovies";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 import HomeList from "./HomeList";
-
+import Loading from "./Loading";
 
 export default function Home() {
   const { options, allMovies, info } = useDataMovies();
@@ -40,50 +40,53 @@ export default function Home() {
   const navigate = useNavigate();
 
   return (
-    <Box h="2700px" >
+    <Box h="2700px">
       <Carousel mb="50">
-        {recommendations.map((movie) => {
-          return (
-            <Box
-              key={movie.id}
-              sx={{
-                backgroundImage: `url(https://image.tmdb.org/t/p/original/${movie.backdrop_path})`,
-                height: "600px",
-                backgrounPosition: "center",
-                backgroundSize: "cover",
-              }}
-            >
-              <Center>
-                <Box
-                  w="50%"
-                  mt="40"
-                  p="15"
-                  bg="white"
-                  backdropFilter="auto"
-                  backdropContrast="10%"
-                  backgroundColor="transparent"
-                >
-                  <Heading as="h3" size="lg" color="black" mb="5">
-                    {movie.title}
-                  </Heading>
-                  <Text color="black">{movie.overview}</Text>
-                  <Button
-                    m="3"
-                    colorScheme="pink"
-                    variant="solid"
-                    onClick={() => navigate(`/detail/${movie.id}`)}
+        {recommendations.length === 0 ? (
+          <Loading />
+        ) : (
+          recommendations.map((movie) => {
+            return (
+              <Box
+                key={movie.id}
+                sx={{
+                  backgroundImage: `url(https://image.tmdb.org/t/p/original/${movie.backdrop_path})`,
+                  height: "600px",
+                  backgrounPosition: "center",
+                  backgroundSize: "cover",
+                }}
+              >
+                <Center>
+                  <Box
+                    w="50%"
+                    mt="40"
+                    p="15"
+                    bg="white"
+                    backdropFilter="auto"
+                    backdropContrast="10%"
+                    backgroundColor="transparent"
                   >
-                    Ver detalle...
-                  </Button>
-                </Box>
-              </Center>
-            </Box>
-          );
-        })}
+                    <Heading as="h3" size="lg" color="black" mb="5">
+                      {movie.title}
+                    </Heading>
+                    <Text color="black">{movie.overview}</Text>
+                    <Button
+                      m="3"
+                      colorScheme="pink"
+                      variant="solid"
+                      onClick={() => navigate(`/detail/${movie.id}`)}
+                    >
+                      Ver detalle...
+                    </Button>
+                  </Box>
+                </Center>
+              </Box>
+            );
+          })
+        )}
       </Carousel>
 
       <HomeList dataPopulares={info} dataRated={rated} />
-   
     </Box>
   );
 }
