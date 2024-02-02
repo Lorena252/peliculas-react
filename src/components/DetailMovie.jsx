@@ -25,7 +25,6 @@ export default function DetailMovie() {
   const date= new Date(info.release_date);
   const year = date.getFullYear();
 
-
   async function getVideo(id) {
     const response = await fetch(
       `https://api.themoviedb.org/3/movie/${id}/videos?language=en-US`,
@@ -49,11 +48,12 @@ export default function DetailMovie() {
           justifyContent="center"
           height="1200px"
           filter="auto"
-          brightness="80%"
+         brightness="80%"
           sx={{
             backgroundImage: `url(https://image.tmdb.org/t/p/original/${info.backdrop_path})`,
             backgrounPosition: "center",
             backgroundSize: "cover",
+            backdropContrast:"10%",
           }}
         >
           <Card
@@ -65,8 +65,9 @@ export default function DetailMovie() {
           >
             <Box
               backdropFilter="auto"
-              backdropContrast="90%"
-              backgroundColor="transparent"
+              backdropContrast="80%"
+              backgroundColor= "rgba(0, 0, 3, 0.6);"
+
             >
               <Flex>
                 <Box
@@ -80,10 +81,10 @@ export default function DetailMovie() {
                 />
 
                 <Box width="50%" height="100%">
-                  <Box backdropFilter="auto" backdropContrast="50%">
+                  <Box >
                     <CardBody>
                       <Flex>
-                        <Heading size="md" color="white" w="250px" >
+                        <Heading  fontSize="3xl"  size="md" color="white" w="250px" >
                           {info.title}
                         </Heading>
                         <Spacer />
@@ -93,7 +94,7 @@ export default function DetailMovie() {
                         <Spacer />
                         <Box  w="50%" h="55px" pl="5px">
                           <Center>
-                            
+
                             {
                               <Link
                                 bg="red"
@@ -105,27 +106,27 @@ export default function DetailMovie() {
                                 </Text>
                               </Link>
                             }
-                          
+
                           </Center>
                         </Box>
                       </Flex>
 
-                      <Text py="10" color="white">
+                      <Text fontSize="2xl" color="white"   py="10" >
                         General
                       </Text>
-                      <Text fontSize="md" fontWeight="5px" color="white">
+                      <Text fontSize='xl' fontWeight="5px" color="white">
                         {info.overview}
                       </Text>
                     </CardBody>
-                    <Text ml="5" color="white">
+                    <Text fontSize="2xl" ml="5" color="white">
                       Generos
                     </Text>
-                    <CardFooter ml="5" color="white">
+                    <CardFooter fontSize="xl" ml="5" color="white">
                       {
                         <ul>
                           {info.genres.map((movieGenre) => {
                             return (
-                              <li key={movieGenre.name}>{movieGenre.name}</li>
+                              <li   key={movieGenre.name}>{movieGenre.name}</li>
                             );
                           })}
                         </ul>
