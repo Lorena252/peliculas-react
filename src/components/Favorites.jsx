@@ -3,7 +3,7 @@ import { Center, Text, Box, Flex, Wrap, Card } from "@chakra-ui/react";
 import { FavoritesContext } from "../context/FavoritesContext";
 import CardMovie from "./CardMovie";
 import { useContext } from "react";
-import Loading from "./Loading"
+import EmptyFavorites from "./EmptyFavorites"
 export default function Favorites() {
 
   const { favorites } = useContext(FavoritesContext);
@@ -20,7 +20,7 @@ export default function Favorites() {
               <Flex>
                 <Wrap>
                 {favorites.length === 0 ? (
-              <Loading/>
+              <EmptyFavorites/>
                 ) : (
                 favorites.map((movie) => {
                 return (
