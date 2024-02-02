@@ -28,7 +28,6 @@ export default function Home() {
       options
     );
     const data = await response.json();
-    console.log(data.results);
     setRated(data.results);
   }
 

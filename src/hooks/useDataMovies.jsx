@@ -6,9 +6,6 @@ function useDataMovies() {
 
   const [info, setInfo] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const totalPagesPopular = 42445;
-
-  const totalPagesLanzamiento = 149;
 
   let options = {
     method: "GET",
@@ -20,7 +17,7 @@ function useDataMovies() {
 
   async function allMovies(categoryMovie) {
     const response = await fetch(
-      `https://api.themoviedb.org/3/movie/${categoryMovie}?language=en-US&page=1${currentPage}`,
+      `https://api.themoviedb.org/3/movie/${categoryMovie}?language=en-US&page=${currentPage}`,
       options
     );
     const data = await response.json();
@@ -43,8 +40,6 @@ function useDataMovies() {
     info,
     currentPage,
     setCurrentPage,
-    totalPagesPopular,
-    totalPagesLanzamiento,
   };
 }
 

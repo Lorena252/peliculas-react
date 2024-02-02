@@ -1,22 +1,25 @@
 import React from "react";
-import { Center, Text, Box, Flex, Wrap } from "@chakra-ui/react";
+import { Center, Text, Box, Flex, Wrap,Icon} from "@chakra-ui/react";
 import { useEffect } from "react";
 import CardMovie from "./CardMovie";
 import useDataMovies from "../hooks/useDataMovies";
 import ResponsivePagination from "react-responsive-pagination";
 import "react-responsive-pagination/themes/classic.css";
+import { HiChevronDoubleRight, HiOutlineChevronDoubleLeft} from "react-icons/hi";
+
 
 export default function Lanzamientos() {
+  const totalPagesLanzamiento = 149;
   const {
     allMovies,
     info,
     currentPage,
-    totalPagesLanzamiento,
     setCurrentPage,
   } = useDataMovies();
 
   useEffect(() => {
     allMovies("now_playing");
+      
   }, [currentPage]);
 
   return (
@@ -46,12 +49,20 @@ export default function Lanzamientos() {
         </Center>
         <Center>
           <Box w="25%" mb="20px">
+            <Flex>
+          <Icon onClick={() => {
+            if(currentPage > 1){
+              setCurrentPage( currentPage - 20)
+            }
+          }
+          } as={HiOutlineChevronDoubleLeft} mr="6px" mt="12px" color="blue"/>
             <ResponsivePagination
-              bg="pink"
               current={currentPage}
               total={totalPagesLanzamiento}
-              onPageChange={setCurrentPage}
+              onPageChange={setCurrentPage}              
             />
+            <Icon onClick={() => setCurrentPage(currentPage + 20)} as={HiChevronDoubleRight} ml="6px" mt="12px" color="blue"/>
+            </Flex>
           </Box>
         </Center>
       </Box>

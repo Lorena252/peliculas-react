@@ -1,13 +1,15 @@
 import React from "react";
-import { Center, Text, Box, Flex, Wrap} from "@chakra-ui/react";
+import { Center, Text, Box, Flex, Wrap,Icon} from "@chakra-ui/react";
 import { useEffect } from "react";
 import CardMovie from "./CardMovie";
 import useDataMovies from "../hooks/useDataMovies";
 import ResponsivePagination from "react-responsive-pagination";
 import "react-responsive-pagination/themes/classic.css";
+import { HiChevronDoubleRight, HiOutlineChevronDoubleLeft} from "react-icons/hi";
 
 export default function Populares() {
-  const { allMovies, info, currentPage, totalPagesPopular, setCurrentPage } =
+  const totalPagesPopular = 42445;
+  const { allMovies, info, currentPage, setCurrentPage } =
     useDataMovies();
 
   useEffect(() => {
@@ -37,14 +39,22 @@ export default function Populares() {
         </Flex>
       </Box>
 
-      <Center>
+      <Center>       
         <Box w="25%" mb="20px">
+        <Flex>
+          <Icon onClick={() => {
+            if(currentPage > 1){
+              setCurrentPage( currentPage - 20)
+            }
+          }
+          } as={HiOutlineChevronDoubleLeft} mr="6px" mt="12px" color="blue"/>
           <ResponsivePagination
-            bg="pink"
             current={currentPage}
             total={totalPagesPopular}
             onPageChange={setCurrentPage}
           />
+                      <Icon onClick={() => setCurrentPage(currentPage + 20)} as={HiChevronDoubleRight} ml="6px" mt="12px" color="blue"/>
+            </Flex>
         </Box>
       </Center>
     </Box>
